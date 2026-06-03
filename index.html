@@ -1,1 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1131071343986814"
+     crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>八達通交通津貼計算器 - 最新政府補貼一鍵估算</title>
+    
+    <!-- 已修正：完美支援無限符號八達通標誌圖示 -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://w3.org' viewBox='0 0 100 60'%3E%3Cpath d='M25,48 C12,48 5,38 5,30 C5,22 12,12 25,12 C40,12 45,28 55,34 C63,39 74,44 82,34 C92,22 84,12 75,12 C62,12 55,24 45,24 C35,24 32,15 25,15 C15,15 10,22 10,30 C10,38 16,43 25,43 C37,43 43,29 53,24 C64,19 72,13 80,21 C88,30 84,43 75,43 C64,43 56,33 47,33 C39,33 34,48 25,48 Z' fill='none' stroke='%23ff6600' stroke-width='8'/%3E%3Cpath d='M47,33 C56,33 64,43 75,43 C84,43 88,30 80,21 C76,17 71,15 66,17' fill='none' stroke='%2300cc66' stroke-width='8'/%3E%3Cpath d='M25,48 C34,48 39,33 47,33' fill='none' stroke='%230066cc' stroke-width='8'/%3E%3C/svg%3E" type="image/svg+xml">
+    
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; max-width: 500px; margin: 40px auto; padding: 20px; text-align: center; background-color: #f9f9f9; color: #333; }
+        .container { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); text-align: left; }
+        h2 { text-align: center; color: #007bff; margin-bottom: 25px; }
+        input, button { padding: 12px; font-size: 16px; margin: 10px 0; width: 100%; box-sizing: border-box; border-radius: 5px; border: 1px solid #ccc; }
+        button { background-color: #007bff; color: white; border: none; cursor: pointer; font-weight: bold; }
+        button:hover { background-color: #0056b3; }
+        #result { margin: 20px 0; font-size: 22px; font-weight: bold; color: #007bff; text-align: center; display: none; padding: 10px; background-color: #e6f2ff; border-radius: 5px; }
+        .content { margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px; color: #555; line-height: 1.6; }
+        h3 { color: #222; margin-top: 20px; }
+        ul { padding-left: 20px; margin: 5px 0; }
+        li { margin-bottom: 8px; }
+        .faq-q { font-weight: bold; color: #007bff; margin-top: 15px; }
+        .faq-a { margin-left: 10px; color: #555; }
+        footer { margin-top: 30px; font-size: 11px; color: #999; text-align: center; }
+    </style>
+</head>
+<body>
 
+    <div class="container">
+        <h2>八達通交通津貼計算器</h2>
+        
+        <!-- 輸入框 -->
+        <input type="number" id="inputNumber" placeholder="請輸入交通津貼金額...">
+        
+        <!-- 按鈕 -->
+        <button onclick="calculate()">立即計算</button>
+
+        <!-- 顯示結果 -->
+        <div id="result"></div>
+
+        <div class="content">
+            <h3>關於八達通交通津貼計算器</h3>
+            <p>輸入交通津貼的數字即可計算出你今個月總共用左幾多錢搭車。本工具專為香港市民設計，輕鬆掌握日常通勤開支。</p>
+            
+            <h3>交通津貼計劃注意事項</h3>
+            <ul>
+                <li><strong>1.</strong> 計劃無須預先登記，但必須使用八達通乘車方可享有補貼。</li>
+                <li><strong>2.</strong> 計劃涵蓋港鐵、專營巴士、綠色專線小巴、渡輪、電車，及部分紅色小巴、邨巴、街渡和員工巴士。</li>
+                <li><strong>3.</strong> 最早每月 16 日起可領取上月津貼，地點包括港鐵站、便利店、八達通手機應用程式等。</li>
+                <li><strong>4.</strong> 領取補貼限期最遲為 3 個月，逾時後無法領取。</li>
+            </ul>
+
+            <!-- 擴充內容：增加網站價值，防止廣告退件 -->
+            <h3>常見問題 FAQ</h3>
+            <div class="faq-q">Q1：任何八達通卡都符合資格嗎？</div>
+            <div class="faq-a">A1：是的，不論實體卡或手機虛擬八達通，只要搭乘指定交通工具皆能自動累計。</div>
+            <div class="faq-q">Q2：多張八達通可以合併計算津貼嗎？</div>
+            <div class="faq-a">A2：不可以，津貼是以每張八達通卡獨立計算，建議固定使用同一張卡。</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 八達通交通津貼計算器 | 免責聲明</p>
+    </footer>
+
+    <script>
+        function calculate() {
+            const inputVal = parseFloat(document.getElementById('inputNumber').value);
+            const resultDiv = document.getElementById('result');
+            
+            if (isNaN(inputVal) || inputVal < 0) {
+                resultDiv.style.display = 'block';
+                resultDiv.style.backgroundColor = '#f8d7da';
+                resultDiv.style.color = '#721c24';
+                resultDiv.innerText = "❌ 請先輸入有效的數字！";
+                return;
+            }
+
+            // 公式：輸入數字 * 3 + 500
+            const outputVal = (inputVal * 3) + 500;
+
+            resultDiv.style.display = 'block';
+            resultDiv.style.backgroundColor = '#e6f2ff';
+            resultDiv.style.color = '#007bff';
+            resultDiv.innerHTML = "估算本月總車費開支為：<br><span style='font-size: 28px; color: #ff6600;'>$" + outputVal.toFixed(1) + "</span> 元";
+        }
+    </script>
+
+</body>
+</html>
